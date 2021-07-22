@@ -74,6 +74,41 @@ func GetProviderResourceSchema() map[string]*tfprotov5.Schema {
 						Description: "A map of attribute paths and desired patterns to be matched. After each apply the provider will wait for all attributes listed here to reach a value that matches the desired pattern.",
 					},
 				},
+				BlockTypes: []*tfprotov5.SchemaNestedBlock{
+					{
+						TypeName: "field_manager",
+						Nesting:  tfprotov5.SchemaNestedBlockNestingModeList,
+						MinItems: 0,
+						MaxItems: 1,
+						Block: &tfprotov5.SchemaBlock{
+							Description: "Configure field manager options.",
+							Attributes: []*tfprotov5.SchemaAttribute{
+								{
+									Name:            "name",
+									Type:            tftypes.String,
+									Required:        false,
+									Optional:        true,
+									Computed:        false,
+									Sensitive:       false,
+									Description:     "The name to use for the field manager when creating and updating the resource.",
+									DescriptionKind: 0,
+									Deprecated:      false,
+								},
+								{
+									Name:            "force_conflicts",
+									Type:            tftypes.Bool,
+									Required:        false,
+									Optional:        true,
+									Computed:        false,
+									Sensitive:       false,
+									Description:     "Force changes against conflicts.",
+									DescriptionKind: 0,
+									Deprecated:      false,
+								},
+							},
+						},
+					},
+				},
 			},
 		},
 	}
